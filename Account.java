@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Account {
 
     private double balance;
@@ -47,6 +45,14 @@ public class Account {
 
     public void addMoney (double amountOfMoney) {
         this.balance += amountOfMoney;
+    }
+
+    public void withdrawMoney (double amountOfMoney) {
+        if (balance < amountOfMoney) {
+            System.out.println("Insufficient funds, cannot comply");
+        } else {
+            this.balance -= amountOfMoney;
+        }
     }
 
 

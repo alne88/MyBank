@@ -128,10 +128,19 @@ public class User {
     }
 
 
-    public void addMoneyToAccount (long accountId, double amountOfMoney) {
+    public void addMoneyToAccount (long accountNumber, double amountOfMoney) {
         for (Account account: accounts) {
-            if (account.getAccountNumber() == accountId){
+            if (account.getAccountNumber() == accountNumber){
                 account.addMoney(amountOfMoney);
+                return;
+            }
+        }
+    }
+    public void withdrawMoneyFromAccount (long accountNumber, double amountOfMoney) {
+        for (Account account: accounts) {
+            if (account.getAccountNumber() == accountNumber){
+                account.withdrawMoney(amountOfMoney);
+                return;
             }
         }
     }
