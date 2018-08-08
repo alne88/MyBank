@@ -1,3 +1,5 @@
+import com.sun.jndi.cosnaming.CorbanameUrl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -49,7 +51,7 @@ public class User {
     }
 
 
-    public void addNewAccount(String currency) {
+    public void addNewAccount(Currency currency) {
         Account newAccount = new Account(currency);
         accounts.add(newAccount);
     }

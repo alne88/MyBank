@@ -3,64 +3,52 @@ import java.util.List;
 
 public class Bank {
 
-    private List<User> users;
+    private List<AccountHolder> accounts;
     private String bankName;
 
     public Bank(String bankName) {
         this.bankName = bankName;
-        this.users = new ArrayList<>();
+        this.accounts = new ArrayList<>();
     }
 
-    public void addUser(   String password,
-                           String fullName,
-                           String aadress,
-                           String phoneNumber,
-                           String email,
-                           String secretQuestion,
-                           String answerForSecretQuestion) {
-
-        User user = new User(password, fullName, aadress, phoneNumber, email, secretQuestion, answerForSecretQuestion);
-        users.add(user);
+    public void addUser(String name, Currency currency) {
+        accounts.add(new UserAccountHolder(name, currency));
     }
 
-    public void addUser (User user) {           //user already exist, we want to move the user to our bank (for ex from another branch)
-        users.add(user);
+    public void addBusiness(String name, Currency currency) {
+        accounts.add(new BusinessAccountHolder(name, currency));
     }
 
-    public Double totalAmountOfMoney (String userId) {
-        for (User user: users) {
-            if (userId.equals(userId)){
-                return user.totalAmountOfMoney();
+    public void addFund(String name, Currency currency) {
+        accounts.add(new FundAccountHolder(name, currency));
+    }
+
+
+    public void addMoney (String name, double amountOfMoney) {
+        for (AccountHolder user: accounts) {
+            if (name.equals(user.name)){
+                user.addMoney(amountOfMoney);
+                return;
+            }
+        }
+    }
+
+    public void withdrawMoney (String name, double amountOfMoney) {
+        for (AccountHolder user: accounts) {
+            if (name.equals(user.name)){
+                user.withdrawMoney(amountOfMoney);
+                return;
+            }
+        }
+    }
+
+        public Double balanceOfUser (String name) {
+        for (AccountHolder user: accounts) {
+            if (name.equals(user.name)){
+                return user.getBalance();
             }
         }
         return null;
-    }
-
-    public void addMoneyToUser (String userId, long accountId, double amountOfMoney) {
-        for (User user: users) {
-            if (userId.equals(user.getId())){
-                user.addMoneyToAccount(accountId, amountOfMoney);
-                return;
-            }
-        }
-    }
-
-    public void withdrawMoneyFromUser (String userId, long accountId, double amountOfMoney) {
-        for (User user: users) {
-            if (userId.equals(user.getId())){
-                user.withdrawMoneyFromAccount(accountId, amountOfMoney);
-                return;
-            }
-        }
-    }
-
-    public void addNewAccount (String userId, String currency) {
-        for (User user: users) {
-            if (userId.equals(user.getId())){
-                user.addNewAccount(currency);
-                return;
-            }
-        }
     }
 
     public String getBankName() {
@@ -70,7 +58,7 @@ public class Bank {
     @Override
     public String toString() {
         return "Bank{" +
-                "users=" + users +
+                "users=" + accounts +
                 ", bankName='" + bankName + '\'' +
                 '}';
     }

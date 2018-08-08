@@ -2,10 +2,10 @@ public class Account {
 
     private double balance;
     private long accountNumber;
-    private String currency;
+    private Currency currency;
     User owner;
 
-    public Account(String currency) {
+    public Account(Currency currency) {
         this.balance = 0;
         this.accountNumber = 10000000 + (long) (Math.random() * 10000000L);
         this.currency = currency;
@@ -27,11 +27,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
