@@ -3,7 +3,6 @@ public class Account {
     private double balance;
     private long accountNumber;
     private Currency currency;
-    User owner;
 
     public Account(Currency currency) {
         this.balance = 0;
@@ -35,14 +34,6 @@ public class Account {
         this.currency = currency;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
     public void addMoney (double amountOfMoney) {
         this.balance += amountOfMoney;
     }
@@ -62,7 +53,6 @@ public class Account {
                 "balance=" + balance +
                 ", accountNumber=" + accountNumber +
                 ", currency='" + currency + '\'' +
-                ", owner=" + owner +
                 '}';
     }
 }

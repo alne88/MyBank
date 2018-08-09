@@ -1,14 +1,9 @@
-public abstract class AccountHolder {
+public interface AccountHolder {
 
-    protected String name;
+        void addMoney(double money);
 
-    protected Account account;
+        void withdrawMoney(double money) throws Exception;
 
-    public abstract void addMoney(double money);
+        String getUniqueIdentifier();
 
-    public abstract void withdrawMoney(double money);
-
-    public abstract double getBalance();
-
-
-}
+    }

@@ -11,44 +11,35 @@ public class Bank {
         this.accounts = new ArrayList<>();
     }
 
-    public void addUser(String name, Currency currency) {
-        accounts.add(new UserAccountHolder(name, currency));
+    public void addUser(String email, Currency currency) {
+        accounts.add(new UserAccountHolder(email, currency));
     }
 
-    public void addBusiness(String name, Currency currency) {
-        accounts.add(new BusinessAccountHolder(name, currency));
+    public void addBusiness(String email, Currency currency) {
+        accounts.add(new BusinessAccountHolder(email, currency));
     }
 
-    public void addFund(String name, Currency currency) {
-        accounts.add(new FundAccountHolder(name, currency));
+    public void addFund(String email, Currency currency) {
+        accounts.add(new FundAccountHolder(email, currency));
     }
 
 
-    public void addMoney (String name, double amountOfMoney) {
+    public void addMoney (String email, double amountOfMoney) {
         for (AccountHolder user: accounts) {
-            if (name.equals(user.name)){
+            if (email.equals(user.getUniqueIdentifier())){
                 user.addMoney(amountOfMoney);
                 return;
             }
         }
     }
 
-    public void withdrawMoney (String name, double amountOfMoney) {
+    public void withdrawMoney (String email, double amountOfMoney) throws Exception {
         for (AccountHolder user: accounts) {
-            if (name.equals(user.name)){
+            if (email.equals(user.getUniqueIdentifier())){
                 user.withdrawMoney(amountOfMoney);
                 return;
             }
         }
-    }
-
-        public Double balanceOfUser (String name) {
-        for (AccountHolder user: accounts) {
-            if (name.equals(user.name)){
-                return user.getBalance();
-            }
-        }
-        return null;
     }
 
     public String getBankName() {

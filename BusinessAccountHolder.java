@@ -1,30 +1,37 @@
-public class BusinessAccountHolder extends AccountHolder {
+public class BusinessAccountHolder implements AccountHolder {
 
-    public BusinessAccountHolder (String name, Currency currency) {
-        this.name = name;
-        this.account = new Account(currency);
+
+    Account regular;
+    String email;
+
+    public BusinessAccountHolder(String email, Currency currency) {
+        this.regular = new Account(currency);
+        this.email = email;
     }
 
     @Override
     public void addMoney(double money) {
-        this.account.addMoney(money);
+        this.regular.addMoney(money);
     }
 
     @Override
-    public void withdrawMoney(double money) {
-        this.account.withdrawMoney(money * 1.03);               //withdraw fee 3%
+    public void withdrawMoney(double money) throws Exception {
+        if (regular.getBalance() < money) {
+            throw new Exception("Not enough money on account");
+        }
+        this.regular.withdrawMoney(money);
     }
 
     @Override
-    public double getBalance() {
-        return this.account.getBalance();
+    public String getUniqueIdentifier() {
+        return email;
     }
 
     @Override
     public String toString() {
         return "BusinessAccountHolder{" +
-                "name='" + name + '\'' +
-                ", account=" + account +
+                "regular=" + regular +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
